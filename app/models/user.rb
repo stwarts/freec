@@ -10,6 +10,11 @@ class User < ApplicationRecord
 
   before_validation :set_user_type
 
+  def authenticate_token
+    # simple enough, can change to jwt token if needed
+    password_digest
+  end
+
   private
 
   def set_user_type
