@@ -46,3 +46,5 @@ group :development do
   # gem "spring"
 end
 
+# Pagination
+gem 'pagy'
