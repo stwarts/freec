@@ -10,6 +10,12 @@ class User < ApplicationRecord
 
   before_validation :set_user_type
 
+  scope :search, ->(string) {
+    return all if string.blank?
+
+    where('email ILIKE :term OR name ILIKE :term', term: "%#{string}%")
+  }
+
   def authenticate_token
     # simple enough, can change to jwt token if needed
     password_digest
