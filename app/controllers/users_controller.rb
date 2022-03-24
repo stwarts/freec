@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, except: :create
+  before_action :authenticate_user
   before_action :set_user, only: %i[show update destroy]
   before_action :authorize_user!
 
