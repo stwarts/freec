@@ -1,10 +1,10 @@
 module Authenticatable
-  def authenticate_user!
-    current_user
+  def authenticate_admin!
+    current_admin_user
   end
 
-  def current_user
-    @current_user ||= User.find_by!(password_digest: authenticate_token)
+  def current_admin_user
+    @current_admin_user ||= User.admin.find_by!(password_digest: authenticate_token)
   end
 
   private

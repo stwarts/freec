@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user
+  before_action :authenticate_admin!
+  before_action :authorize_admin!
   before_action :set_user, only: %i[show update destroy]
-  before_action :authorize_user!
 
   # GET /users
   def index
@@ -53,6 +53,6 @@ class UsersController < ApplicationController
   end
 
   def authorize_user!
-    authorize!(current_user, action, UserPolicy)
+    authorize!(current_admin_user, action, UserPolicy)
   end
 end
