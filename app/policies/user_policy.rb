@@ -1,6 +1,7 @@
 class UserPolicy
-  def initialize(user)
+  def initialize(user, record = nil)
     @user = user
+    @record = record
   end
 
   def index?
@@ -16,10 +17,10 @@ class UserPolicy
   end
 
   def update?
-    user.admin?
+    user.admin? && record&.user?
   end
 
   def delete?
-    user.admin?
+    user.admin? && record&.user?
   end
 end
