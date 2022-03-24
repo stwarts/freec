@@ -4,22 +4,22 @@ class UserPolicy
   end
 
   def index?
-    user.admin
+    user.admin?
   end
 
   def create?
-    user.admin
+    user.admin?
   end
 
   def show?
-    user.admin
+    user.admin?
   end
 
   def update?
-    user.admin
+    user.admin?
   end
 
   def delete?
-    user.admin
+    user.admin?
   end
 end
