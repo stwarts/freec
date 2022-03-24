@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @pagy, @users = pagy(User.all)
+    @pagy, @users = pagy(User.all.search(params[:search]))
 
     render json: @users
   end
