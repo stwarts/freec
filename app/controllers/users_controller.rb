@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_user, only: %i[show update destroy]
+  before_action :authorize_admin!
 
   # GET /users
   def index
-    @users = User.all
+    @pagy, @users = pagy(User.all.search(params[:search]))
 
     render json: @users
   end
@@ -48,5 +50,9 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:email, :password, :user_type)
+  end
+
+  def authorize_user!
+    authorize!(current_admin_user, action, UserPolicy, @user)
   end
 end
